@@ -7,6 +7,11 @@ class VakinhaSpider(scrapy.Spider):
     name = 'vakinha'
     allowed_domains = ['vakinha.com.br']
     start_urls = ['https://www.vakinha.com.br/vaquinhas/explore']
+    custom_settings = {
+        'FEED_URI': '%(name)s_%(time)s.json',
+        'FEED_FORMAT': 'json',
+        'FEED_EXPORT_ENCODING': 'utf-8',
+    }
 
     def get_number_of_last_page(self, response):
         pagination = response.css('.pagination>li')
