@@ -50,9 +50,11 @@ class VakinhaSpider(scrapy.Spider):
         item_id = response.css('#vakinha-id::text').get()
         created_at = response.css('.created-at')[0].get()
         end_at = response.css('.ending-at')[0].get()
+        link = response.css('#short-url::attr(value)').get()
 
         item['id'] = int(re.findall('\d+', item_id).pop())
         item['created_at'] = re.findall(VakinhaSpider.date_regex, created_at).pop()
         item['end_at'] = re.findall(VakinhaSpider.date_regex, end_at).pop()
+        item['link'] = link
 
         yield item
