@@ -22,7 +22,7 @@ class VakinhaSpider(scrapy.Spider):
 
     def parse(self, response):
         list_of_items = response.css('.vakinhas-populares>.vakinha-item')
-        for item in list_of_items[:1]:
+        for item in list_of_items:
             link = item.css('a::attr(href)').get()
             title = item.css('h2::text').get()
             goal = item.css('.goal>span::text').get()
